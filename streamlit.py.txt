@@ -1,0 +1,79 @@
+
+import streamlit as st
+import pandas as pd 
+import matplotlib.pyplot as plt
+def evaluer_mdp(mdp):
+    score = 0
+    caractere = "azertyuiopqsdfghjklmwxcvbn"
+    resultats = []
+    if mdp != mdp.lower():
+        score += 2 
+        resultats.append("Le mot de passe contient des majuscules.")
+    
+    if mdp != mdp.upper():
+        score += 1
+        resultats.append("Le mot de passe contient des minuscules.")
+    
+    if "e" in mdp:
+        resultats.append("Le mot de passe contient la lettre 'e'.")
+    
+    if any(caractere.isdigit() for caractere in mdp): #isdigit verifie la totalite des chiffres
+        score += 2 
+        resultats.append("Le mot de passe contient des chiffres.")
+    
+    if len(mdp) > 12:
+        score += 2 
+        resultats.append("Le mot de passe contient plus de 12 caractères (+2 points).")
+    elif 8 <= len(mdp) <= 12:
+        score += 2 
+        resultats.append("Le mot de passe contient entre 8 et 12 caractères (+2 points).")
+
+    caracteres_speciaux = "(!@#$%^&*)"
+    if any(caractere in caracteres_speciaux for caractere in mdp):
+        score += 3
+        resultats.append("Le mot de passe contient des caractères spéciaux (+3 points).")
+
+    if mdp in mdp_interdits:
+        score -=5
+        resultats.append("Le mot de passe est trop commun (-5 points).")
+    score = max(0, score)
+    return score, resultats
+def conseils_personnalises(score):
+    if score <= 3:
+        return "Votre mot de passe est faible. Essayez d'ajouter des majuscules, des chiffres, et des caractères spéciaux pour le renforcer."
+    elif 4 <= score <= 6:
+        return "Votre mot de passe est moyen. Vous pouvez l'améliorer en augmentant sa longueur et en évitant les mots communs."
+    elif 7 <= score <= 9:
+        return "Votre mot de passe est solide. Il est sécurisé, mais vous pouvez encore ajouter des caractères spéciaux pour le renforcer d'avantage."
+    else:
+        return "Votre mot de passe est très sécurisé. Bravo !"
+mdp_interdits = ["1234", "12345", "123456", "1234567", "12345678", "123456789", "password",
+    "qwerty", "azerty", "admin", "letmein", "welcome", "123123", "111111",
+    "monmotdepasse", "abc123", "iloveyou", "password1", "000000", "654321",
+    "superman", "batman", "football", "baseball", "master", "sunshine",
+    "shadow", "dragon", "trustno1"]
+
+# Titre et sous-titre
+st.title("Verificateur de la force d'un mot de passe avec Streamlit")
+st.subheader("Découverte des fonctionnalités de Streamlit")
+
+# Zone de saisie
+mdp = st.text_input("Entrez votre mot de passe :",type = "password")
+if mdp:
+    # Évaluation du mot de passe
+    score, resultats = evaluer_mdp(mdp)
+
+    # Affichage des résultats
+    st.write(f"**Score :** {score}/10")
+    st.progress(score * 10)
+    conseil = conseils_personnalises(score)
+    st.write(f"**Conseils pour améliorer votre mot de passe :** {conseil}")
+# Lecture d'un fichier texte
+uploaded_file = st.file_uploader("Chargez un fichier texte (.txt)", type="txt")
+if uploaded_file:
+    contenu = uploaded_file.read().decode("utf-8")
+    st.write("Contenu du fichier chargé :")
+    st.text(contenu)
+
+# Résultat final
+st.write("Merci d'avoir utilisé cette application. 🚀")
