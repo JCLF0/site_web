@@ -1,37 +1,50 @@
 
-    #page1 { /* ici on utilise l'id de l'iframe changer son style, display veut dire afficher et none c'est non, ducoup on la voit pas  */
-        display: none;
-    }
-    #page1:target { /* ici on utilise le :target pour afficher l'iframe (display: block) quand dans l'url il y a écrit #page1 d'où le #page1 dans le href */
-        display: block;
-    }
-    #page2 { /* ici on utilise l'id de l'iframe changer son style, display veut dire afficher et none c'est non, ducoup on la voit pas  */
-        display: none;
-    }
-    #page2:target { /* ici on utilise le :target pour afficher l'iframe (display: block) quand dans l'url il y a écrit #page2 d'où le #page2 dans le href */
-        display: block;
-    }
-    #page3 { 
-        display: none;
-
-    }
-    #page3:target {
-        display: block;
-    }
-    #page4 { 
-        display: none;
-
-    }
-    #page4:target {
-        display: block;
-    }
-    #page5 { 
-        display: none;
-
-    }
-    #page5:target {
-        display: block;
-    }
+#page1{
+    display:none;
+}
+#page1:target{
+    display:block;
+    height:100%;
+    width:100%;
+}
+#page2{
+    display:none;
+}
+#page2:target{
+    display:block;
+    height:100%;
+    width:100%;
+}
+#page3{
+    display:none;
+}
+#page3:target{
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 100%;
+    left: 40%;
+}
+#page4{
+    display:none;
+}
+#page4:target{
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 100%;
+    left: 40%;
+}
+#page5{
+    display:none;
+}
+#page5:target{
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 100%;
+    left: 40%;
+}
     body {
         font-family: 'Roboto', sans-serif;
         background-color: white;
@@ -128,50 +141,5 @@
         left:550px;
         position:relative;
     }
-    #page1{
-        display:none;
-    }
-    #page1:target{
-        display:block;
-        height:100%;
-        width:100%;
-    }
-    #page2{
-        display:none;
-    }
-    #page2:target{
-        display:block;
-        height:100%;
-        width:100%;
-    }
-    #page3{
-        display:none;
-    }
-    #page3:target{
-        position: fixed;
-        display: block;
-        height: 100%;
-        width: 100%;
-        left: 40%;
-    }
-    #page4{
-        display:none;
-    }
-    #page4:target{
-        position: fixed;
-        display: block;
-        height: 100%;
-        width: 100%;
-        left: 40%;
-    }
-    #page5{
-        display:none;
-    }
-    #page5:target{
-        position: fixed;
-        display: block;
-        height: 100%;
-        width: 100%;
-        left: 40%;
-    }
+
     
